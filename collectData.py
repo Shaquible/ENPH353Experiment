@@ -15,11 +15,11 @@ IP = "192.168.0.31"
 def recordGyroData(numIter):
     numSec = numIter*8.59
     # Record data for numSec seconds
-    data = np.zeros((numSec*3000, 1))
+    data = np.zeros((numSec*3000, 2))
     startTime = time.time()
     i = 0
     while time.time() - startTime < numSec:
-        data[i] = mpu.gyro[2]
+        data[i, :] = [startTime-time.time(), mpu.gyro[2]]
         i += 1
     return data
 
